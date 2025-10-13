@@ -33,7 +33,7 @@ chmod +x ./setup.sh
 ./setup.sh -t
 
 pip install -r requirements.txt
-python3 src/geanno.py -d example/dna/a_thaliana.fa -m example/model/model.pkl
+python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl
 ```
 
 ## Installation
@@ -88,7 +88,7 @@ python3 src/geanno.py -d <DNA_FILE> -m <MODEL>
 
 You can use the following example and check if everything is working as intended:
 ```bash
-python3 src/geanno.py -d example/dna/a_thaliana.fa -m example/model/model.pkl
+python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl
 ```
 
 To see all options:
@@ -98,10 +98,18 @@ python3 src/geanno.py -h
 
 ## Pre-trained models
 
-We provide two pre-trained models users can use to make their predictions
+We provide all pre-trained models users can use to make their predictions.
 
-- `example/model/model.pkl`: trained on *A. thaliana* (undersampling, XGBoost). Corresponds to the ouput of `experimental_setup/notebooks/classifiers/classifiers_a_thaliana_1500_50.ipynb`
-- `models/models_genic_m_esculenta_PCA/model_undersampling_XGBoost_50.pkl`: trained on *M. esculenta* variants (undersampling, XGBoost). Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_m_esculenta_1500_50_PCA.ipynb`
+- `models/models_genic_m_esculenta_PCA/model_undersampling_XGBoost_50.pkl`: trained on *M. esculenta* variants (undersampling, XGBoost), using PCA. Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_m_esculenta_1500_50_PCA.ipynb`
+
+- `models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl`: trained on *A. thaliana* species (undersampling, XGBoost). Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_a_thaliana_1500_50.ipynb`
+- `models/models_genic_a_thaliana_PCA/model_undersampling_XGBoost_50.pkl`: trained on *A. thaliana* species (undersampling, XGBoost), using PCA. Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_a_thaliana_1500_50_PCA.ipynb`
+
+- `models/models_genic_o_sativa/model_undersampling_XGBoost_50.pkl`: trained on *O. sativa* species (undersampling, XGBoost). Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_o_sativa_1500_50.ipynb`
+- `models/models_genic_o_sativa_PCA/model_undersampling_XGBoost_50.pkl`: trained on *O. sativa* species (undersampling, XGBoost), using PCA. Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_o_sativa_1500_50_PCA.ipynb`
+
+- `models/models_genic_genemark/model_undersampling_XGBoost_50.pkl`: trained on *D. melanogaster*, *C. elegans* and *A. thaliana* species (undersampling, XGBoost). Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_genemark_1500_50.ipynb`
+- `models/models_genic_genemark_PCA/model_undersampling_XGBoost_50.pkl`: trained on *D. melanogaster*, *C. elegans* and *A. thaliana* species (undersampling, XGBoost), using PCA. Corresponds to the output of `experimental_setup/notebooks/classifiers/classifiers_genemark_1500_50_PCA.ipynb`
 
 ## **Training new models**
 
@@ -149,7 +157,7 @@ python train_models/train_model.py -d dataset.csv -m XGBoost -ov --n_iter 20
 
 ### **Option 2** - Using the experimental setup:
 
-For more control and to reproduce the experiments described in the notebooks, you can use the experimental setup workflow:
+To reproduce the experiments described in the notebooks, you can use the experimental setup workflow:
 
 **1. Download necessary datasets:**
 
@@ -165,7 +173,7 @@ experimental_setup/dataset_scripts/extract_features.sh
 
 **3. Run the provided notebooks (in `experimental_setup/notebooks/`) to train and evaluate models.**
 
-- Example: `classifiers/classifiers_a_thaliana_1500_50.ipynb` reproduces the *A. thaliana* model included in `example/model/model.pkl`.
+- Example: `classifiers/classifiers_a_thaliana_1500_50.ipynb` reproduces the *A. thaliana* model included in `models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl`.
 
 > A more detailed description of these scripts is available in [experimental_setup/README.md](experimental_setup/README.md).
 
@@ -177,7 +185,7 @@ GeAnno/
 ├── bin/                  # C++ binaries and installed tools
 ├── example/              # Example FASTA, GFF3, and model
 ├── experimental_setup/   # Scripts and notebooks for experiments
-├── models/               # Place for trained models (generated, not included)
+├── models/               # Trained models (pre-trained included)
 ├── src/                  # Python and C++ source code
 └── train_models/         # Dataset generation and training scripts
 ```
