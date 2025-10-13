@@ -111,9 +111,11 @@ def run_pipeline(pipeline: PipelineRun):
     if pipeline.csv_input and os.path.exists(pipeline.csv_input):
         logging.info(f"[MAIN] Loading pre-computed features from {pipeline.csv_input}.")
         final_df = pd.read_csv(pipeline.csv_input)
+        final_df["strand"] = final_df["strand"].map({1: "forward", 0: "reverse"}).fillna("forward")
 
         windows_by_chrom_strand = defaultdict(list)
         for _, row in final_df.iterrows():
+            row["strand"]
             windows_by_chrom_strand[(row["chromosome"], row["strand"])].append((row["start"], row["end"]))
 
         chr_lengths = final_df.groupby("chromosome")["end"].max().to_dict()
@@ -137,7 +139,7 @@ def run_pipeline(pipeline: PipelineRun):
     for (chromosome, strand), windows_list in windows_by_chrom_strand.items():
         chr_len = chr_lengths[chromosome]
         for start, end in windows_list:
-            if strand == "reverse":
+            if (strand == "reverse"):
                 start_m, end_m = chr_len - end, chr_len - start
             else:
                 start_m, end_m = start, end
@@ -168,7 +170,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     #required parameters
-    parser.add_argument("-d", "--dna_file", required=True)
+    parser.add_argument("-d", "--dna_file", help="FASTA DNA file (required if --csv_features_file_path not provided)")
     parser.add_argument("-m", "--model", required=True)
     
     #where to place outputs
@@ -187,6 +189,9 @@ if __name__ == "__main__":
     parser.add_argument("-ma", "--moving_average", default=5, type=int)
     
     args = parser.parse_args()
+
+    if not args.csv_features_file_path and not args.dna_file:
+        parser.error("Either --dna_file (-d) or --csv_features_file_path (-c) must be provided.")
 
     if not (args.save_plot):
         args.figure_folder = None

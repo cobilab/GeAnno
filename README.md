@@ -33,7 +33,7 @@ chmod +x ./setup.sh
 ./setup.sh -t
 
 pip install -r requirements.txt
-python3 src/genic.py -d example/dna/a_thaliana.fa -m example/model/model.pkl
+python3 src/geanno.py -d example/dna/a_thaliana.fa -m example/model/model.pkl
 ```
 
 ## Installation
@@ -83,17 +83,17 @@ pip install -r requirements.txt
 ### Running prediction on a DNA sequence:
 
 ```bash
-python3 src/genic.py -d <DNA_FILE> -m <MODEL>
+python3 src/geanno.py -d <DNA_FILE> -m <MODEL>
 ```
 
 You can use the following example and check if everything is working as intended:
 ```bash
-python3 src/genic.py -d example/dna/a_thaliana.fa -m example/model/model.pkl
+python3 src/geanno.py -d example/dna/a_thaliana.fa -m example/model/model.pkl
 ```
 
 To see all options:
 ```bash
-python3 src/genic.py -h
+python3 src/geanno.py -h
 ```
 
 ## Pre-trained models

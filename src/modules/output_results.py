@@ -4,17 +4,26 @@ import numpy as np
 def save_plot(strand, predictions, window_size, step, figure_folder):
     """Faz o plot da sequência genómica"""
     plt.figure(figsize=(14, 6))
+
+    plt.rcParams.update({
+        'font.size': 16,
+        'axes.titlesize': 22,
+        'axes.labelsize': 18,
+        'xtick.labelsize': 14,
+        'ytick.labelsize': 14,
+        'legend.fontsize': 14,
+    })
     
     positions = [(start + end) / 2 for (start, end) in sorted(predictions.keys())]
     probabilities = [predictions[(start, end)] for (start, end) in sorted(predictions.keys())]
     
-    plt.plot(positions, probabilities, label="P(genic)")
+    plt.plot(positions, probabilities, label="P(genic)", linewidth=2)
 
-    plt.title(f'Strand: {strand} - Predictions')
+    plt.title(f'Strand: {strand} - Predictions', pad=15)
     plt.xlabel('Genomic Position (center of window)')
     plt.ylabel('Probability of being genic')
     plt.legend()
-    plt.grid(True)
+    plt.grid(True, linewidth=0.6, alpha=0.6)
     plt.tight_layout()
     
     save_path = f"{figure_folder}/{strand}_combined_{window_size}_{step}.png"
