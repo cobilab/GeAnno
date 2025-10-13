@@ -1,3 +1,0 @@
-##gff-version 3
-1	GeAnno	gene	3650	5350	0.8739	+	.	ID=gene1;
-1	GeAnno	gene	6472	8872	0.8686	-	.	ID=gene2;
