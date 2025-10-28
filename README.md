@@ -32,7 +32,6 @@ source ~/.bashrc
 chmod +x ./setup.sh
 ./setup.sh -t
 
-pip install -r requirements.txt
 python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl
 ```
 

@@ -86,7 +86,7 @@ while getopts ":htba" option; do
         h) Help; exit;;
         t) Tools;;
         b) CPP_Bin;;
-        a) Tools; CPP_Bin;
+        a) Tools; CPP_Bin;;
         \?) echo "Error: Invalid option. Use -h for help."; exit;;
    esac
 done
