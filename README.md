@@ -32,6 +32,8 @@ source env_geanno.sh
 chmod +x ./setup.sh
 ./setup.sh -t
 
+source .venv/bin/activate
+
 python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl
 ```
 
@@ -78,8 +80,11 @@ chmod +x setup.sh
 ### **Install Python dependencies**
 
 ```bash
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
+
+> Please make sure you have te .venv/ directory (python3 virtual environment), which should have been created using the `setup.sh` script
 
 ## **Running GeAnno**
 
