@@ -28,7 +28,7 @@ check_and_install() {
     else
         echo "[INFO] Installing $pkg..."
         apt-get download "$pkg" && dpkg -x ${pkg}_*.deb "$custom_path"
-        echo "export PATH=$custom_path/usr/bin:\$PATH" >> ~/.bashrc
+        echo "export PATH=$custom_path/usr/bin:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
         rm -f ${pkg}_*.deb
     fi
 }
@@ -42,13 +42,13 @@ Tools() {
     check_and_install "gzip" "gunzip" "${PLANT_DIR}/bin/gzip"
     check_and_install "emboss" "getorf" "${PLANT_DIR}/bin/emboss"
 
-    source ~/.bashrc
+    source ${PLANT_DIR}/env_geanno.sh
 
     # gto
     if [ ! -d "${PLANT_DIR}/bin/gto" ]; then
         git clone https://github.com/cobilab/gto.git
         (cd gto/src && make)
-        echo "export PATH=${PLANT_DIR}/bin/gto/bin:\$PATH" >> ~/.bashrc
+        echo "export PATH=${PLANT_DIR}/bin/gto/bin:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
     else
         echo "[INFO] gto already installed, skipping."
     fi
@@ -57,16 +57,16 @@ Tools() {
     if [ ! -d "${PLANT_DIR}/bin/jarvis3" ]; then
         git clone https://github.com/cobilab/jarvis3.git
         (cd jarvis3/src && make)
-        echo "export PATH=${PLANT_DIR}/bin/jarvis3/src:\$PATH" >> ~/.bashrc
+        echo "export PATH=${PLANT_DIR}/bin/jarvis3/src:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
     else
         echo "[INFO] jarvis3 already installed, skipping."
     fi
 
     cd "${PLANT_DIR}"
 
-    echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> ~/.bashrc
+    echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
     
-    source ~/.bashrc
+    source ${PLANT_DIR}/env_geanno.sh
 
     PythonVenv;
     echo "[DONE] Tools installation complete."
@@ -77,7 +77,7 @@ CPP_Bin() {
     g++ "${PLANT_DIR}/src/cpp/extract_characteristics_batch.cpp" -o "${PLANT_DIR}/bin/extract_characteristics_batch"
     g++ "${PLANT_DIR}/src/cpp/converter.cpp" -o "${PLANT_DIR}/bin/converter"
 
-    echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> ~/.bashrc
+    echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
     echo "[DONE] C++ binaries compiled."
 }
 

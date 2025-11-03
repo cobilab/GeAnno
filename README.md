@@ -26,8 +26,8 @@ It combines biologically motivated features with XGBoost to build accurate gene 
 git clone https://github.com/Brums21/GeAnno.git
 cd GeAnno
 
-echo "export PLANT_DIR=$(pwd)" >> ~/.bashrc
-source ~/.bashrc
+echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh
+source env_geanno.sh
 
 chmod +x ./setup.sh
 ./setup.sh -t
@@ -40,8 +40,8 @@ python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thal
 ### **Set up environment variable** 
 
 ```bash
-echo "export PLANT_DIR=$(pwd)" >> ~/.bashrc
-source ~/.bashrc
+echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh
+source env_geanno.sh
 ```
 
 This variable is used to locate datasets, binaries and outputs, and is needed for the normal functioning of this program.
