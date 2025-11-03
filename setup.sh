@@ -13,7 +13,7 @@ Help() {
 }
 
 PythonVenv() { 
-    python -m venv ${PLANT_DIR}/.venv
+    python3 -m venv ${PLANT_DIR}/.venv
     source ${PLANT_DIR}/.venv/bin/activate
     pip install -r ${PLANT_DIR}/requirements.txt
 }

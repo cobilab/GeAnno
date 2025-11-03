@@ -37,6 +37,10 @@ python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thal
 
 ## Installation
 
+### Pre-requirements
+
+- Python3 (with pip)
+
 ### **Set up environment variable** 
 
 ```bash
@@ -139,7 +143,7 @@ train_models/generate_dataset_model.sh -h
 Train Random Forest, XGBoost, or both:
 
 ```bash
-python train_models/train_model.py -d dataset.csv -m RF XGBoost
+python3 train_models/train_model.py -d dataset.csv -m RF XGBoost
 ```
 Options include:
 - `-cv`: Number of CV folds (default: 3)
@@ -151,7 +155,7 @@ Options include:
 Example (train only XGBoost with oversampling and 20 iterations):
 
 ```bash
-python train_models/train_model.py -d dataset.csv -m XGBoost -ov --n_iter 20
+python3 train_models/train_model.py -d dataset.csv -m XGBoost -ov --n_iter 20
 ```
 
 ### **Option 2** - Using the experimental setup:
