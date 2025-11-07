@@ -222,7 +222,7 @@ if __name__ == "__main__":
                         help="Directory where models will be saved (default: models/trained_models)")
     
     parser.add_argument("-ov", "--oversampling", action="store_true", default=False,
-                        help="Use oversampling (default: oversampling)")
+                        help="Use oversampling (default: undersampling)")
 
     parser.add_argument("--cv", type=int, default=3, help="Number of CV folds for RandomizedSearchCV")
     parser.add_argument("--n_jobs", type=int, default=4, help="Number of parallel jobs for training")
