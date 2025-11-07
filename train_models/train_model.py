@@ -168,12 +168,12 @@ def main(args):
         )
     }
 
-    if args.undersample:
-        X_train_, y_train_ = undersample_data(X_train, y_train)
-        sampling_type = "undersampling"
-    else:
+    if args.oversampling:
         X_train_, y_train_ = oversample_data(X_train, y_train)
         sampling_type = "oversampling"
+    else:
+        X_train_, y_train_ = undersample_data(X_train, y_train)
+        sampling_type = "undersampling"
 
     selected_tasks = []
     for model in args.models:
@@ -221,8 +221,8 @@ if __name__ == "__main__":
     parser.add_argument("--output_dir", default=OUTPUT_DIR_NAME,
                         help="Directory where models will be saved (default: models/trained_models)")
     
-    parser.add_argument("-u", "--undersample", action="store_true", default=True,
-                        help="Use undersampling (default: undersampling)")
+    parser.add_argument("-ov", "--oversampling", action="store_true", default=False,
+                        help="Use oversampling (default: oversampling)")
 
     parser.add_argument("--cv", type=int, default=3, help="Number of CV folds for RandomizedSearchCV")
     parser.add_argument("--n_jobs", type=int, default=4, help="Number of parallel jobs for training")
