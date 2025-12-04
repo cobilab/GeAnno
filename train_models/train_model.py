@@ -24,6 +24,8 @@ if not plant_dir:
     raise EnvironmentError("PLANT_DIR environment variable is not set")
 
 def import_data_everything(dataset):
+    """ Imports dataset, shuffles, removes 'species' column and NA values. """
+    
     data = pd.read_csv(dataset)
     logging.info(f"Read CSV: {data.shape}")
 
@@ -50,6 +52,7 @@ def import_data_everything(dataset):
 
     
 def import_split_scale_data(dataset):
+    """ Imports dataset, encodes labels, removes duplicates, splits into train/test. """
     le = LabelEncoder()
 
     dataset = dataset.sample(frac=1, random_state=42).reset_index(drop=True)
@@ -74,6 +77,7 @@ def import_split_scale_data(dataset):
 
 
 def undersample_data(X_train, y_train):
+    """ Undersamples the majority class in the training data. """
     rs = RandomUnderSampler(random_state=42)
     X_train, y_train = rs.fit_resample(X_train, y_train)
 
@@ -83,6 +87,7 @@ def undersample_data(X_train, y_train):
     return X_train, y_train
 
 def oversample_data(X_train, y_train):
+    """ Oversamples the minority class in the training data. """
     sm = SMOTE(random_state=42)
     X_train, y_train = sm.fit_resample(X_train, y_train)
 
@@ -95,6 +100,7 @@ def tune_and_evaluate(name, model, params, sampling,
     X_train, y_train, X_test, y_test, le, y_test_bin,
     feature_names, output_file=None, output_dir=".",
     cv=3, n_jobs=4, n_iter=10):
+    """ Tunes hyperparameters, evaluates model, saves pipeline and results. """
     
     pipe = Pipeline([
         ("scaler", StandardScaler()),

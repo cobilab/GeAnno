@@ -5,6 +5,8 @@ from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def run_orfs(windows):
+    """ Run getorf on each window in parallel and return list of longest ORFs. """
+    
     orfs = [None] * len(windows)
 
     def orf_job(idx, seq):
@@ -53,6 +55,8 @@ def run_orfs(windows):
     return orfs
 
 def run_jarvis(windows):
+    """ Run JARVIS3 on each window in parallel and return list of compression ratios. """
+
     compressions = [None] * len(windows)
 
     def jarvis_job(idx, seq):

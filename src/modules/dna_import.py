@@ -1,9 +1,12 @@
 def reverse_complement(seq):
+    """ Returns the reverse complement of a DNA sequence. """
     complement = str.maketrans("ACGTacgt", "TGCAtgca")
     return seq.translate(complement)[::-1]
 
 def import_dna_file(file_path):
-    """Importa sequência de ADN e devolve dicionário cuja chave é o ID do cromosoma e o item é a string correspondente à sequência"""
+    """ Imports DNA sequence and returns dict in which the key is the chromosome ID
+    and the value is the string that correspodns to the sequence."""
+    
     chr_dict = {}
     current_chr = None
     seq_buffer = []

@@ -23,7 +23,7 @@ It combines biologically motivated features with XGBoost to build accurate gene 
 ## Quickstart
 
 ```bash
-git clone https://github.com/Brums21/GeAnno.git
+git clone https://github.com/cobilab/GeAnno
 cd GeAnno
 
 echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh

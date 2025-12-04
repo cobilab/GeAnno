@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def save_plot(strand, predictions, window_size, step, figure_folder):
-    """Faz o plot da sequência genómica"""
+    """ Plots the genomic sequence. """
     plt.figure(figsize=(14, 6))
 
     plt.rcParams.update({
