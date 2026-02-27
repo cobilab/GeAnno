@@ -40,7 +40,6 @@ Tools() {
     check_and_install "wget" "wget" "${PLANT_DIR}/bin/wget"
     check_and_install "make" "make" "${PLANT_DIR}/bin/make"
     check_and_install "gzip" "gunzip" "${PLANT_DIR}/bin/gzip"
-    check_and_install "emboss" "getorf" "${PLANT_DIR}/bin/emboss"
 
     source ${PLANT_DIR}/env_geanno.sh
 

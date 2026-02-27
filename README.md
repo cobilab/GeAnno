@@ -23,6 +23,13 @@ It combines biologically motivated features with XGBoost to build accurate gene 
 ## Quickstart
 
 ```bash
+# Installing pre-requirements
+sudo apt-get update
+sudo apt install python3.12-venv
+sudo apt install emboss
+sudo apt install gcc
+
+# Setting up GeAnno
 git clone https://github.com/cobilab/GeAnno
 cd GeAnno
 
@@ -31,6 +38,7 @@ source env_geanno.sh
 
 chmod +x ./setup.sh
 ./setup.sh -t
+source env_geanno.sh
 
 source .venv/bin/activate
 
@@ -42,6 +50,16 @@ python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thal
 ### Pre-requirements
 
 - Python3 (with pip)
+- Emboss (getorf)
+- C++ compiler (gcc)
+
+### **Install pre-requirements**
+
+```bash
+sudo apt-get update
+sudo apt install python3.12-venv
+sudo apt install emboss
+```
 
 ### **Set up environment variable** 
 
