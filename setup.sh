@@ -6,7 +6,7 @@ Help() {
     echo "Syntax: $0 [-h|t|b|d|a]"
     echo "options:"
     echo "-h   Print this Help."
-    echo "-t   Install required tools (EMBOSS, JARVIS3, GTO) and python requirements in venv."
+    echo "-t   Install required tools (JARVIS3, GTO) and python requirements in venv."
     echo "-b   Compile C++ binaries into ./bin directory."
     echo "-a   Do both (tools + binaries)."
     echo
@@ -62,8 +62,6 @@ Tools() {
     fi
 
     cd "${PLANT_DIR}"
-
-    echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
     
     source ${PLANT_DIR}/env_geanno.sh
 

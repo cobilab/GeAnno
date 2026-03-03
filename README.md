@@ -22,18 +22,35 @@ It combines biologically motivated features with XGBoost to build accurate gene 
 
 ## Quickstart
 
+### Using conda environment
+
+```bash
+git clone https://github.com/cobilab/GeAnno
+cd GeAnno
+
+echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh
+echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> env_geanno.sh
+source env_geanno.sh
+
+conda env create -f environment.yml
+conda activate geanno
+
+python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl
+```
+
+### Locally
+
 ```bash
 # Installing pre-requirements
 sudo apt-get update
-sudo apt install python3.12-venv
-sudo apt install emboss
-sudo apt install gcc
+sudo apt install python3.12-venv emboss gcc
 
 # Setting up GeAnno
 git clone https://github.com/cobilab/GeAnno
 cd GeAnno
 
 echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh
+echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> env_geanno.sh
 source env_geanno.sh
 
 chmod +x ./setup.sh
@@ -53,18 +70,25 @@ python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thal
 - Emboss (getorf)
 - C++ compiler (gcc)
 
-### **Install pre-requirements**
+With sudo access, you can install these using: 
 
 ```bash
 sudo apt-get update
-sudo apt install python3.12-venv
-sudo apt install emboss
+sudo apt install python3.12-venv emboss gcc
+```
+
+If you don't have sudo access, you can use a conda environment with the required depedencies:
+
+```bash
+conda env create -f environment.yml
+conda activate geanno
 ```
 
 ### **Set up environment variable** 
 
 ```bash
 echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh
+echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> env_geanno.sh
 source env_geanno.sh
 ```
 
@@ -84,10 +108,11 @@ chmod +x setup.sh
 ./setup.sh -h
 ```
 
-- To install required dependencies (EMBOSS, JARVIS3, gto, etc.) and create a Python virtual environment where requirements are installed:
+- To install required dependencies (JARVIS3, gto, etc.) and create a Python virtual environment where requirements are installed:
 ```bash
 ./setup.sh -t
 ```
+>This is not needed when using conda 
 
 - To also compile the C++ binaries:
 ```bash
