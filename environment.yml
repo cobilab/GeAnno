@@ -7,6 +7,7 @@ dependencies:
   - bioconda::jarvis3==3.7
   - cobilab::gto==1.5.9
   - gcc=11.2.0
+  - gxx_linux-64==15.2.0
   - pip
   - pip:
     - imbalanced-learn==0.13.0

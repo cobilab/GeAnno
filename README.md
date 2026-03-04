@@ -29,7 +29,7 @@ git clone https://github.com/cobilab/GeAnno
 cd GeAnno
 
 echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh
-echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> env_geanno.sh
+echo "export PATH=$(pwd)/bin/:\$PATH" >> env_geanno.sh
 source env_geanno.sh
 
 conda env create -f environment.yml
@@ -43,20 +43,19 @@ python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thal
 ```bash
 # Installing pre-requirements
 sudo apt-get update
-sudo apt install python3.12-venv emboss gcc
+sudo apt install python3.12-venv emboss gcc g++
 
 # Setting up GeAnno
 git clone https://github.com/cobilab/GeAnno
 cd GeAnno
 
 echo "export PLANT_DIR=$(pwd)" >> env_geanno.sh
-echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> env_geanno.sh
+echo "export PATH=$(pwd)/bin/:\$PATH" >> env_geanno.sh
 source env_geanno.sh
 
 chmod +x ./setup.sh
 ./setup.sh -t
 source env_geanno.sh
-
 source .venv/bin/activate
 
 python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thaliana/model_undersampling_XGBoost_50.pkl
@@ -68,7 +67,7 @@ python3 src/geanno.py -d example/dna/a_thaliana.fa -m models/models_genic_a_thal
 
 - Python3 (with pip)
 - Emboss (getorf)
-- C++ compiler (gcc)
+- C++ compiler (gcc and g++)
 
 With sudo access, you can install these using: 
 

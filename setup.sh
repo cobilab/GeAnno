@@ -47,7 +47,9 @@ Tools() {
     if [ ! -d "${PLANT_DIR}/bin/gto" ]; then
         git clone https://github.com/cobilab/gto.git
         (cd gto/src && make)
-        echo "export PATH=${PLANT_DIR}/bin/gto/bin:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
+        if ! grep -q "export PATH=${PLANT_DIR}/bin/gto/bin" ${PLANT_DIR}/env_geanno.sh; then
+            echo "export PATH=${PLANT_DIR}/bin/gto/bin:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
+        fi
     else
         echo "[INFO] gto already installed, skipping."
     fi
@@ -56,13 +58,14 @@ Tools() {
     if [ ! -d "${PLANT_DIR}/bin/jarvis3" ]; then
         git clone https://github.com/cobilab/jarvis3.git
         (cd jarvis3/src && make)
-        echo "export PATH=${PLANT_DIR}/bin/jarvis3/src:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
+        if ! grep -q "export PATH=${PLANT_DIR}/bin/jarvis3/src" ${PLANT_DIR}/env_geanno.sh; then
+            echo "export PATH=${PLANT_DIR}/bin/jarvis3/src:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
+        fi
     else
         echo "[INFO] jarvis3 already installed, skipping."
     fi
 
     cd "${PLANT_DIR}"
-    
     source ${PLANT_DIR}/env_geanno.sh
 
     PythonVenv;
@@ -74,7 +77,9 @@ CPP_Bin() {
     g++ "${PLANT_DIR}/src/cpp/extract_characteristics_batch.cpp" -o "${PLANT_DIR}/bin/extract_characteristics_batch"
     g++ "${PLANT_DIR}/src/cpp/converter.cpp" -o "${PLANT_DIR}/bin/converter"
 
-    echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
+    if ! grep -q "export PATH=${PLANT_DIR}/bin/:" ${PLANT_DIR}/env_geanno.sh; then
+        echo "export PATH=${PLANT_DIR}/bin/:\$PATH" >> ${PLANT_DIR}/env_geanno.sh
+    fi
     echo "[DONE] C++ binaries compiled."
 }
 
